@@ -1,0 +1,90 @@
+const fs = require('fs');
+const jsonFile = require('./2.json');
+
+let logToFile = '';
+for(let property in jsonFile){
+    switch (property) {
+        case 'flag':
+            if (typeof jsonFile[property] == 'boolean') {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'myPromises':
+            if (Array.isArray(jsonFile[property]) === true) {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'element':
+            if (typeof jsonFile[property] == 'object') {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'screenshot':
+            if (jsonFile[property] === null) {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'elementText':
+            if (typeof jsonFile[property] == 'string') {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'allElementsText':
+            if (jsonFile[property].includes('const') === true) {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'counter':
+            if (jsonFile[property] > 10) {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'config':
+            if (jsonFile[property] === 'Common') {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'const':
+            if (jsonFile[property].toLowerCase() === 'first') {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'parameters':
+            if (Array.isArray(jsonFile[property]) === true && jsonFile[property].length == 8) {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        case 'description':
+            if (jsonFile[property].length > 5 && jsonFile[property].length < 13) {
+                console.log('Ok');
+            } else {
+                logToFile += property + ' : ' + jsonFile[property] + '\n';
+            }
+            break;
+        default:
+            logToFile += 'unknown property ' + property + ' : ' + jsonFile[property] + '\n';
+    }
+}
+fs.writeFile('log.txt', logToFile, (err) => {
+    if(err) throw err;
+});

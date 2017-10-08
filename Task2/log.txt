@@ -1,0 +1,8 @@
+flag : 0
+element : title
+unknown property css : .dd-ui
+allElementsText : contain the cost
+config : not a Common
+const : the first const
+parameters : 3,,add,delete,update,,false
+description : my first project on js
